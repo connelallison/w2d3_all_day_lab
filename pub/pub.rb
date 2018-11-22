@@ -143,6 +143,22 @@ class Pub
     @till += amount
   end
 
+  def drink_stock_value()
+    return @drinks.sum() { |drink| drink.price * drink.quantity }
+  end
+
+  def food_stock_value()
+    return @foods.sum() { |food| food.price * food.quantity }
+  end
+
+  def total_stock_value()
+    return drink_stock_value + food_stock_value
+  end
+
+  def total_assets()
+    return total_stock_value + @till
+  end
+
 end
 
 
@@ -168,4 +184,9 @@ end
 
   @pub = Pub.new("The State", 10000, @drinks, @foods)
 
-@customer_2.buy_drink(@pub, @drink_1)
+# @customer_2.buy_drink(@pub, @drink_1)
+
+# p @pub.drink_stock_value
+# p @pub.food_stock_value()
+# p @pub.total_stock_value()
+# p @pub.total_assets()
