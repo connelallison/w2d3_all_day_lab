@@ -60,8 +60,8 @@ class Game
   end
 
   def make_guess(guessed_letter)
-    if (@hidden_word.guess_report(guessed_letter))
-      @guessed_letters.push(guessed_letter)
+    if (@hidden_word.guess_report(guessed_letter.downcase()[0]))
+      @guessed_letters.push(guessed_letter.downcase()[0])
       return "Correct guess!"
     else
       return @player.lose_life()
@@ -81,7 +81,11 @@ class Game
     end
 
     def guessed_letters()
-      return @guessed_letters.reject() { |char| char != " "}
+      return @guessed_letters.reject() { |char| char == " "}
+    end
+
+    def lives()
+      (@player.lives() == 1) ? "#{@player.lives()} life" : "#{@player.lives()} lives"
     end
 
   end
